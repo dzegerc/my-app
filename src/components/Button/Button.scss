@@ -1,0 +1,23 @@
+.Button {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid #d33e3e;
+  border-radius: 6px;
+  background: #d33e3e;
+  color: #ffffff;
+  transition: all 0.3s ease-out;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+
+  &:hover {
+    cursor: pointer;
+    border-color: #e4b333;
+    background: #e4b333;
+  }
+  &:focus {
+    outline: none;
+  }
+}

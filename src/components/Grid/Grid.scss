@@ -1,0 +1,23 @@
+.Grid {
+  display: grid;
+  row-gap: 32px;
+
+  @media screen and (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+
+    &_3 {
+      padding: 0 32px;
+    }
+  }
+
+  @media screen and (min-width: 1300px) {
+    &_3 {
+      padding: 0 84px;
+    }
+  }
+}
