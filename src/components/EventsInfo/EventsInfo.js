@@ -1,10 +1,19 @@
 import React from 'react';
-import './EventsInfo.scss';
-import { Link } from 'react-router-dom';
+import Button from '../../components/Button/Button';
+import {
+    EventsInfo as EventsInfoStyle,
+    Title,
+    Content,
+    ContentRow,
+    Item,
+    ItemTitle,
+    ItemValue
+} from './EventsInfoStyle';
 
 const links = {
     event: 'Find out more',
 }
+
 
 const EventsInfo = ({
     title,
@@ -12,35 +21,38 @@ const EventsInfo = ({
     date,
     emptySpaces,
     company,
-    buttonText
+    buttonText,
+    route
 }) => {
     return (
-        <div className="EventsInfo">
-                <h2 className="EventsInfo-Title">{title}</h2>
-                <div className="EventsInfo-Content">
-                    <div className="EventsInfo-ContentRow">
-                        <div className="EventsInfo-Item">
-                            <h3 className="EventsInfo-ItemTitle">Lokacija</h3>
-                            <p className="EventsInfo-ItemValue">{location}</p>
-                        </div>
-                        <div className="EventsInfo-Item">
-                            <h3 className="EventsInfo-ItemTitle">Datum i vrijeme</h3>
-                            <p className="EventsInfo-ItemValue">{date}</p>
-                        </div>
-                    </div>
-                    <div className="EventsInfo-ContentRow">
-                        <div className="EventsInfo-Item">
-                            <h3 className="EventsInfo-ItemTitle">Slobodna mjesta</h3>
-                            <p className="EventsInfo-ItemValue">{emptySpaces}</p>
-                        </div>
-                        <div className="EventsInfo-Item">
-                            <h3 className="EventsInfo-ItemTitle">Firma</h3>
-                            <p className="EventsInfo-ItemValue">{company}</p>
-                        </div>
-                    </div>
-                </div>
-                <Link text={buttonText} className="Button" to="/event">{links.event} </Link>
-            </div>
+        <>
+        <EventsInfoStyle>
+            <Title>{title}</Title>
+            <Content>
+                <ContentRow>
+                    <Item>
+                        <ItemTitle>Lokacija</ItemTitle>
+                        <ItemValue>{location}</ItemValue>
+                    </Item>
+                    <Item>
+                        <ItemTitle>Datum i vrijeme</ItemTitle>
+                        <ItemValue>{date}</ItemValue>
+                    </Item>
+                </ContentRow>
+                <ContentRow>
+                    <Item>
+                        <ItemTitle>Slobodna mjesta</ItemTitle>
+                        <ItemValue>{emptySpaces}</ItemValue>
+                    </Item>
+                    <Item>
+                        <ItemTitle>Firma</ItemTitle>
+                        <ItemValue>{company}</ItemValue>
+                    </Item>
+                </ContentRow>
+            </Content>
+            <Button text={buttonText} route={route} />
+            </EventsInfoStyle>
+        </>
     );
 }
 export default EventsInfo;

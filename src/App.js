@@ -1,4 +1,5 @@
-
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import './App.scss';
 
 import Header from './components/Header/Header';
@@ -10,18 +11,14 @@ import Event from './pages/Event/Event';
 import Events from './pages/Events/Events';
 
 
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-
-
 class App extends Component {
   render() {
     return (
       <>
-      <Header/>
+      <Header />
       <Main>
-          <Route path="/home" component={Home} />
-          <Route path="/event" component={Event}  />
+          <Route exact path="/" component={Home} />
+          <Route path="/event/:id" component={Event}  />
           <Route path="/events" component={Events} />
       </Main>
       <Footer/>
@@ -29,5 +26,4 @@ class App extends Component {
   );
 }
 }
-
 export default App;

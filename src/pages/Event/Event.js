@@ -1,23 +1,43 @@
+import React,  { useState, useEffect } from 'react';
+import eventsMock from '../../lib/mock/events';
 
-import './Event.scss';
 
 import EventInfo from '../../components/EventInfo/EventInfo';
-import ImageDesign from '../../assets/images/design.jpg'
+import Section from '../../components/Section/Section';
 
 
-function App() {
-    return (
-      <>
-        <EventInfo 
-                        image={ImageDesign}
-                        location="Hodnik FOI-a"
-                        date="14.10. (9:00-16:00h)"
-                        emptySpaces="15/60"
-                        company="Speck"
-                        buttonText="Prijavi se"
-                    />  
-      </>
-    );
-  }
-  
-  export default App;
+
+const Event = (props) => {
+  const routeEventId = parseInt(props.match.params.id);
+  const [events, setEvents] = useState(null);
+  const [event, setEvent] = useState(null);
+
+  useEffect(() => {
+    setEvents(eventsMock);
+  }, []);
+
+  useEffect(() => {
+    events && setEvent(...events.filter(event => event.id === routeEventId));
+  }, [events]);
+
+  return(
+    <>
+        {event && 
+        <>
+            <h1 className="Title">{event.title}</h1>
+            <Section title={event.title}>
+                <EventInfo
+                    location={event.location}
+                    date={event.dateTime}
+                    emptySpaces={event.availability}
+                    company={event.company}
+                    description={event.description}
+                    route= {`/event/${event.id}`}
+                />
+            </Section>
+            </>
+            }
+        </>
+    )
+};
+export default Event;

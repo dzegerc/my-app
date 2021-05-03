@@ -1,60 +1,70 @@
-import './EventInfo.scss';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-
-const links = {
-    event: 'Prijavi se',
-}
+import Button from '../../components/Button/Button';
+import {
+    EventInfo as EventInfoStyle,
+    Title,
+    Figure,
+    Image,
+    Content,
+    ContentRow,
+    Item,
+    ItemTitle,
+    ItemValue,
+    Description
+} from './EventInfoStyle';
 
 
 const EventInfo = ({
     image,
+    title,
     location,
     date,
     emptySpaces,
     company,
-    buttonText
+    buttonText,
+    description,
+    imageAlt,
+    route
 }) => {
     return (
-        <div className="EventInfo">
-            <h2 className="EventInfo-Title">UX/UI design workshop</h2>
-            <div className="EventInfo-Info">
-                <figure className="EventInfo-Figure">
-                    <img src={image} alt="UX/UI workshop" className="EventInfo-Image"></img>
-                </figure>
-                <div className="EventInfo-Content">
-                    <div className="EventInfo-ContentRow">
-                        <div className="EventInfo-Item">
-                            <h3 className="EventInfo-ItemTitle">Lokacija</h3>
-                            <p className="EventInfo-ItemValue">{location}</p>
-                        </div>
-                        <div className="EventInfo-Item">
-                            <h3 className="EventInfo-ItemTitle">Datum i vrijeme</h3>
-                            <p className="EventInfo-ItemValue">{date}</p>
-                        </div>
-                    </div>
-                    <div className="EventInfo-ContentRow">
-                        <div className="EventInfo-Item">
-                            <h3 className="EventInfo-ItemTitle">Slobodna mjesta</h3>
-                            <p className="EventInfo-ItemValue">{emptySpaces}</p>
-                        </div>
-                        <div className="EventInfo-Item">
-                            <h3 className="EventInfo-ItemTitle">Firma</h3>
-                            <p className="EventInfo-ItemValue">{company}</p>
-                        </div>
-                    </div>
-                    <div className="EventInfo-InfoContentRow">
-                    <Link text={buttonText} className="Button" to="/event">{links.event}</Link>
-                    </div>
-                </div>
-            </div>
-            <div className="EventInfo-Description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et dignissimos eligendi inventore odio quis soluta nisi, expedita iste fugit. Libero natus quasi asperiores ex odit cumque vel cum amet porro. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas assumenda quaerat accusantium quidem eligendi quibusdam nobis voluptatem? Qui non consequuntur ratione debitis deleniti quod fugiat! Esse doloribus necessitatibus voluptatum enim.
-            </div>
-        </div>
+        <>
+        <EventInfoStyle>
+            <Title>{title}</Title>
+            <Figure>
+                <Image src={image} alt={imageAlt}/>
+            </Figure>
+            <Content>
+                <ContentRow>
+                    <Item>
+                        <ItemTitle>Lokacija</ItemTitle>
+                        <ItemValue>{location}</ItemValue>
+                    </Item>
+                    <Item>
+                    <ItemTitle>Datum i vrijeme</ItemTitle>
+                        <ItemValue>{date}</ItemValue>
+                    </Item>
+                </ContentRow>
+                <ContentRow>
+                    <Item>
+                        <ItemTitle>Slobodna mjesta</ItemTitle>
+                        <ItemValue>{emptySpaces}</ItemValue>
+                    </Item>
+                    <Item>
+                        <ItemTitle>Firma</ItemTitle>
+                        <ItemValue>{company}</ItemValue>
+                    </Item>
+                </ContentRow>
+                <Button text={buttonText} route={route} />
+                <Description>{description}</Description>
+            </Content>
+        </EventInfoStyle>
+        </>
     );
 }
-
 export default EventInfo;
+
+
+
+
+

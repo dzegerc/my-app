@@ -1,8 +1,12 @@
 import React from 'react';
-import './Event.scss';
-import '../Button/Button';
-
-import { Link } from 'react-router-dom';
+import Button from '../../components/Button/Button';
+import { 
+    EventInfo,
+    Figure,
+    Image,
+    Title,
+    Description
+} from './EventStyle';
 
 const links = {
     event: 'Find out more',
@@ -11,18 +15,20 @@ const links = {
 const Event = ({
     image,
     title,
+    imageAlt,
     description,
-    buttonText
+    buttonText,
+    route
 }) => {
     return (
-        <div className="Event">
-        <figure className="Event-Figure">
-            <img src={image} alt="Design" className="Event-Image"/>
-        </figure>
-        <h3 className="Event-Title">{title}</h3>
-        <p className="Event-Description">{description}</p>
-        <Link text={buttonText} className="Button" to="/event">{links.event} </Link> 
-    </div>
+        <EventInfo>
+            <Figure>
+               <Image src={image} alt={imageAlt}/> 
+            </Figure>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
+            <Button text={buttonText} route={route} />
+        </EventInfo>
     );
 }
 export default Event;

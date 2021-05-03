@@ -1,65 +1,45 @@
-import './Events.scss';
+import React,  { useState, useEffect } from 'react';
+import eventsMock from '../../lib/mock/events';
+import Loader from '../../components/Loader/Loader';
 
 import Section from '../../components/Section/Section';
-import Grid from '../../components/Grid/Grid';
+import  { Grid } from '../../lib/style/generalStyles';
 import EventsInfo from '../../components/EventsInfo/EventsInfo';
 
-function App() {
+const Events = () => {
+    const [events, setEvents] = useState(null);
+    
+  
+    useEffect(() => {
+        setTimeout(() => {
+            setEvents(eventsMock);
+        }, 1000);
+    }, [events]);
+  
+
     return (
         <>
-        <Section title="Events">
-                <Grid columns="3">
-                <EventsInfo 
-                           title="UX/UI design workshop"
-                           location="Hodnik FOI-a"
-                           date="14.10. (9:00-16:00h)"
-                           emptySpaces="15/60"
-                           company="Speck"
+              <Section title="Events">
+                  <Loader />
+                  {events &&
+                    <Grid columns={8}>
+                        {events.map(event => event.id &&
+                   <EventsInfo 
+                           key={event.id}
+                           title={event.title}
+                           location={event.location}
+                           date={event.dateTime}
+                           emptySpaces={event.availability}
+                           company={event.company}
                            buttonText="Find out more"
+                           route={`/event/${event.id}`}
                         />
-                        <EventsInfo 
-                            title="UX/UI design workshop"
-                            location="Hodnik FOI-a"
-                            date="14.10. (9:00-16:00h)"
-                            emptySpaces="15/60"
-                            company="Speck"
-                            buttonText="Find out more"
-                        />
-                        <EventsInfo
-                            title="UX/UI design workshop"
-                            location="Hodnik FOI-a"
-                            date="14.10. (9:00-16:00h)"
-                            emptySpaces="15/60"
-                            company="Speck"
-                            buttonText="Find out more"
-                        />
-                        <EventsInfo 
-                            title="UX/UI design workshop"
-                            location="Hodnik FOI-a"
-                            date="14.10. (9:00-16:00h)"
-                            emptySpaces="15/60"
-                            company="Speck"
-                            buttonText="Find out more"
-                        />
-                        <EventsInfo
-                            title="UX/UI design workshop"
-                            location="Hodnik FOI-a"
-                            date="14.10. (9:00-16:00h)"
-                            emptySpaces="15/60"
-                            company="Speck"
-                            buttonText="Find out more"
-                        />
-                        <EventsInfo
-                            title="UX/UI design workshop"
-                            location="Hodnik FOI-a"
-                            date="14.10. (9:00-16:00h)"
-                            emptySpaces="15/60"
-                            company="Speck"
-                            buttonText="Find out more"
-                        />
+                     )
+                  } 
                 </Grid>
+                }
             </Section>
     </>
     );
 }
-export default App;
+export default Events;

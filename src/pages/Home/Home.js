@@ -1,43 +1,48 @@
-import './Home.scss';
+import React, {useState, useEffect} from 'react';
+import eventsMock from '../../lib/mock/events';
+import Loader from '../../components/Loader/Loader';
+import '../../App.scss';
 
 import Hero from '../../components/Hero/Hero';
 import Section from '../../components/Section/Section';
-import Grid from '../../components/Grid/Grid';
+import { Grid } from '../../lib/style/generalStyles';
 import Event from '../../components/Event/Event';
 
 
-import ImageDesign from '../../assets/images/design.jpg'
-import ImageDevelopment from '../../assets/images/development.jpg';
-import ImageMarketing from '../../assets/images/marketing.jpg';
 
-function App() {
+const Home = () => {
+    const [events, setEvents] = useState(null);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setEvents(eventsMock);
+        }, 1000);
+    }, [events]);
+
     return (
         <>
             <Hero/>
             <Section title="Featured Events">
-                <Grid columns="3">
-                <Event 
-                            image={ImageDesign}
-                            title="UX/UI design workshop"
-                            description="Learn how to solve big problems and test new ideas based on Google Sprint methodology..."
+            <Loader />
+                {events && 
+                  <Grid columns={3}>
+                      {events.map(event => event.isFeatured &&
+                          <Event 
+                            key={event.id}
+                            image={event.imageUrl}
+                            title={event.title}
+                            description={event.shortDescription}
+                            imageAlt={event.imageAlt}
                             buttonText="Find out more"
-                        />
-                        <Event 
-                            image={ImageDevelopment}
-                            title="Frontend best practices"
-                            description="Best frontend practices for developers. Learn advanced CSS techniques and much more..."
-                            buttonText="Find out more"
-                        />
-                        <Event 
-                            image={ImageMarketing}
-                            title="Digital marketing workshop"
-                            description="Lear how to use Google Ads and social networks to gain customers for your digital product..."
-                            buttonText="Find out more"
-                        />
+                            route={`/event/${event.id}`}
+                        />  
+                        )
+                    }
                 </Grid>
+               }
             </Section>
       
         </>
       );
     }
-export default App;
+export default Home;
