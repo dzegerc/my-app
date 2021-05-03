@@ -8,9 +8,9 @@ import {
     Description
 } from './EventStyle';
 
-const links = {
-    event: 'Find out more',
-}
+
+
+  
 
 const Event = ({
     image,
