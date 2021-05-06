@@ -1,16 +1,12 @@
 import React from 'react';
-import Button from '../../components/Button/Button';
+import { Button} from '../../lib/style/generalStyles';
 import { 
-    EventInfo,
+    Event as EventStyle,
     Figure,
     Image,
     Title,
     Description
 } from './EventStyle';
-
-
-
-  
 
 const Event = ({
     image,
@@ -20,15 +16,16 @@ const Event = ({
     buttonText,
     route
 }) => {
+    
     return (
-        <EventInfo>
+        <EventStyle>
             <Figure>
                <Image src={image} alt={imageAlt}/> 
             </Figure>
             <Title>{title}</Title>
             <Description>{description}</Description>
-            <Button text={buttonText} route={route} />
-        </EventInfo>
+            <Button to={route} text={buttonText}/> 
+        </EventStyle>
     );
 }
 export default Event;

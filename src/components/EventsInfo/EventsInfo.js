@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../components/Button/Button';
+import { Button } from '../../lib/style/generalStyles';
 import {
     EventsInfo as EventsInfoStyle,
     Title,
@@ -10,9 +10,7 @@ import {
     ItemValue
 } from './EventsInfoStyle';
 
-const links = {
-    event: 'Find out more',
-}
+
 
 
 const EventsInfo = ({
@@ -50,7 +48,7 @@ const EventsInfo = ({
                     </Item>
                 </ContentRow>
             </Content>
-            <Button text={buttonText} route={route} />
+            <Button to={route} text={buttonText}/> 
             </EventsInfoStyle>
         </>
     );

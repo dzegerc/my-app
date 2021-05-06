@@ -2,7 +2,7 @@ import React,  { useState, useEffect } from 'react';
 import eventsMock from '../../lib/mock/events';
 import Loader from '../../components/Loader/Loader';
 
-import Section from '../../components/Section/Section';
+import { Section } from './EventsStyle'; 
 import  { Grid } from '../../lib/style/generalStyles';
 import EventsInfo from '../../components/EventsInfo/EventsInfo';
 
@@ -22,8 +22,9 @@ const Events = () => {
               <Section title="Events">
                   <Loader />
                   {events &&
-                    <Grid columns={8}>
-                        {events.map(event => event.id &&
+                    <Grid columns={4}>
+                        {events.map(event => {
+                            return (
                    <EventsInfo 
                            key={event.id}
                            title={event.title}
@@ -34,8 +35,10 @@ const Events = () => {
                            buttonText="Find out more"
                            route={`/event/${event.id}`}
                         />
-                     )
-                  } 
+                     );
+                  }
+                        )
+                } 
                 </Grid>
                 }
             </Section>

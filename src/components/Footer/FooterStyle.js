@@ -10,10 +10,6 @@ export const Footer = styled.footer `
 
     @media screen and (${breakpoints.tablet}) {
         padding: 30px;
-
-        &-Description {
-            font-size: 14px;
-        }
     }
 `;
 
@@ -21,4 +17,8 @@ export const Description = styled.p `
     color: ${colors.lightGrey};
     font-size: 12px;
     text-align: center;
-`
+
+    @media screen and (${breakpoints.tablet}) {
+            font-size: 14px;
+    }
+`;

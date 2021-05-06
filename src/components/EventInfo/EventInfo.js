@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Button from '../../components/Button/Button';
+import { Button } from '../../lib/style/generalStyles';
 import {
     EventInfo as EventInfoStyle,
     Title,
@@ -22,10 +22,11 @@ const EventInfo = ({
     date,
     emptySpaces,
     company,
-    buttonText,
     description,
     imageAlt,
+    buttonText,
     route
+    
 }) => {
     return (
         <>
@@ -55,7 +56,7 @@ const EventInfo = ({
                         <ItemValue>{company}</ItemValue>
                     </Item>
                 </ContentRow>
-                <Button text={buttonText} route={route} />
+                <Button to={route} text={buttonText}/> 
                 <Description>{description}</Description>
             </Content>
         </EventInfoStyle>

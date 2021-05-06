@@ -5,7 +5,7 @@ import {
     boxShadowHover
 } from '../../lib/style/theme';
 
-export const EventInfo = styled.div `
+export const Event = styled.div `
     padding: 20px;
     border-radius: 6px;
     box-shadow: ${boxShadow};

@@ -3,7 +3,7 @@ import {
    breakpoints
 } from '../../lib/style/theme';
 
-export const Grid = styled.div `
+export const Section = styled.section `
         display: grid;
         row-gap: 32px;
 
@@ -14,16 +14,12 @@ export const Grid = styled.div `
 
     @media screen and ${breakpoints.desktop} {
         grid-template-columns: repeat(3, 1fr);
-
-        &_3 {
           padding: 0 32px;
         }
     }
 
     @media screen and ${breakpoints.desktopLarge} {
-        grid-template-columns: (3, 1fr);
-
-        &_4 {
+        grid-template-columns: (4, 1fr);
          padding: 0 84px;
     }
 }

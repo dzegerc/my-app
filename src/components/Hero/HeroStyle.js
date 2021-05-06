@@ -10,52 +10,8 @@ export const SectionHero = styled.section `
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-
-    @media screen and (${breakpoints.mobileLarge}) {
-        &-HeroContent {
-            padding: 0 25px;
-        }
-        &-HeroOverlay {
-            justify-content: flex-start;
-        }
-        &-HeroHeading {
-            font-size: 24px;
-            max-width: 400px;
-        }
-        &-HeroSubheading {
-            max-width: 550px;
-        }
-    }
-
-    @media screen and (${breakpoints.desktop}) {
-        &-HeroContent {
-            padding: 0;
-            max-width: 993px;
-            margin: 0 auto;
-        }
-        &-HeroHeading {
-            font-size: 28px;
-            max-width: 500px;
-        }
-        &-HeroSubheading {
-            max-width: 700px
-        }
-    }
-
-    @media screen and (${breakpoints.desktopLarge}) {
-        height: 500px;
-        &-HeroContent {
-            max-width: 1280px;
-        }
-        &-HeroHeading {
-            font-size: 32px;
-        }
-        &-HeroSubheading {
-            font-size: 16px;
-            max-width: 800px;
-        }
-    }
 `;
+    
 
 export const HeroOverlay = styled.div `
     position: relative;
@@ -65,28 +21,71 @@ export const HeroOverlay = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (${breakpoints.mobileLarge}) {
+        justify-content: flex-start;
+    }
 `;
 
 export const HeroContent = styled.div `
     width: 100%;
     padding: 0 15px;
+
+    @media screen and (${breakpoints.mobileLarge}) {
+        padding: 0 25px;
+    }
+
+    @media screen and (${breakpoints.desktop}) {
+      padding: 0;
+      max-width: 993px;
+      margin: 0 auto;
+    }
+
+    @media screen and (${breakpoints.desktopLarge}) {
+        height: 500px
+        max-width: 1280px;
+    }
 `;
 
 export const HeroHeading = styled.h1 `
     color: ${colors.yellow};
     max-width: 450px;
     line-height: 140%;
-    margin-left: 200px;
     margin-bottom: 30px;
-    font-size: 30px;
+    font-size: 20px;
+
+    @media screen and (${breakpoints.mobileLarge}) {
+        font-size: 24px;
+        max-width: 400px;
+    }
+
+    @media screen and (${breakpoints.desktop}) {
+        font-size: 28px;
+        max-width: 500px;
+    }
+    
+    @media screen and (${breakpoints.desktopLarge}) {
+        font-size: 32px;
+    }
 `;
 
 export const HeroSubheading = styled.p `
-    max-width: 750px;
-    line-height: 200%;
-    font-weight: 500;
-    margin-left: 200px;
+    line-height: 160%;
+    font-weight: 400;
     color: ${colors.white};
     font-size: 14px;
+
+    @media screen and (${breakpoints.mobileLarge}) {
+        max-width: 550px;
+    }
+
+    @media screen and (${breakpoints.desktop}) {
+        max-width: 700px;
+    }
+
+    @media screen and (${breakpoints.desktopLarge}) {
+        font-size: 16px;
+        max-width: 800px;
+    }
 `;
 

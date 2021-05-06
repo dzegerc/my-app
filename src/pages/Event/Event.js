@@ -5,6 +5,14 @@ import eventsMock from '../../lib/mock/events';
 import EventInfo from '../../components/EventInfo/EventInfo';
 import Section from '../../components/Section/Section';
 
+import {
+  Title,
+  Figure,
+  Image,
+  Content,
+  ContentRow,
+  Description
+} from '../../components/EventInfo/EventInfoStyle';
 
 
 const Event = (props) => {
@@ -18,22 +26,29 @@ const Event = (props) => {
 
   useEffect(() => {
     events && setEvent(...events.filter(event => event.id === routeEventId));
-  }, [events]);
+  }, [events, routeEventId]);
 
   return(
     <>
         {event && 
         <>
-            <h1 className="Title">{event.title}</h1>
-            <Section title={event.title}>
+          <Section>
+            <Title>{event.title}</Title>
+            <Figure>
+                <Image src={event.imageURL} alt={event.imageAlt}/>
+            </Figure>
+            <Content>
+              <ContentRow>
                 <EventInfo
                     location={event.location}
                     date={event.dateTime}
                     emptySpaces={event.availability}
                     company={event.company}
-                    description={event.description}
                     route= {`/event/${event.id}`}
                 />
+                 </ContentRow>
+                 <Description>{event.description}</Description>
+                </Content>
             </Section>
             </>
             }

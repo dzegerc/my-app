@@ -4,11 +4,13 @@ import {
     Description
 } from './FooterStyle';
 
+
+
 const Footer = () => {
     return (
-        <footer class="Footer">,
-        <p class="Footer_Description">Copyright ©2021, Speck Academy</p> 
-    </footer>
+        <FooterStyle>
+            <Description>Copyright ©2021, Speck Academy</Description>
+        </FooterStyle>
     );
 }
 

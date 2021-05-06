@@ -1,12 +1,16 @@
 import React from 'react';
-import './Button.scss';
+import { Button
+} from '../../lib/style/generalStyles';
 
 
-const Button = ({
-    text
-}) => {
-    return (
-        <button className="Button">{ text }</button>
-    );
+
+
+const Button = ()  => {
+    return(
+    <Button
+        buttonText="Find out more"
+        to= {`/event/${event.id}`}
+    />
+  );
 }
 export default Button;
