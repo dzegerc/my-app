@@ -51,5 +51,100 @@ font-family: "Montserrat", sans-serif;
 }
 `;
 
+export const Title = styled.h2 `
+    text-align: center;
+    margin-bottom: 30px;
+`;
+
+export const Form = styled.div`
+    width: 100%;
+    text-align: center;
+
+    @media screen and (${breakpoints.desktop}) {
+        width: 400px
+    }
+
+    @media screen and (${breakpoints.desktopLarge}) {
+        width: 400px
+    }
+`;
+
+export const FormRow = styled.div `
+    margin-bottom: 32px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+`;
+
+export const CheckboxWrapper = styled.div `
+    display: flex;
+    align-items: center;
+`;
+
+export const InputLabel = styled.label `
+    display: block;
+    font-weight: 600px;
+    margin-bottom: 4px;
+
+    @media screen and (${breakpoints.mobileLarge}) {
+        font-size: 14px;
+    }
+    @media screen and (${breakpoints.desktop}) {
+        font-size: 16px;
+    }
+`;
+
+export const InputText = styled.input `
+    border: 1px solid ${colors.lightGrey};
+    border-radius: 6px;
+    width: 100%;
+    line-height: 40px;
+    padding: 0 10px;
+    outline: none;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+
+    &:focus {
+        border-color: ${colors.yellow};
+    }
+
+    @media screen and (${breakpoints.desktop}) {
+        font-size: 16px;
+    }
+`;
+
+export const TextArea = styled.textarea `
+    border: 1px solid ${colors.lightGrey};
+    border-radius: 6px;
+    width: 100%;
+    line-height: 150%;
+    padding: 10px;
+    outline: none;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    min-width: 100%;
+
+    &:focus {
+        border-color: ${colors.yellow};
+    }
+
+    @media screen and (${breakpoints.desktop}) {
+        font-size: 16px;
+    }
+`;
+
+export const InputCheckbox = styled.input `
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+`;
+
+export const InputError = styled.p `
+    font-size: 14px;
+    color: ${colors.red};
+    padding-top: 8px;
+`;
+
 
      
