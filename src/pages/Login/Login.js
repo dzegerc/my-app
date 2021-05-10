@@ -13,8 +13,12 @@ import {
     InputText,
     InputCheckbox,
     InputError,
-    ButtonSubmit
+    ButtonSubmit,
+    successMessage
 } from '../../lib/style/generalStyles';
+ import {loginUser} from '../../api/login';
+ import { getAllUsers } from '../../api/user'; 
+import { values } from 'lodash';
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -33,14 +37,33 @@ const Login = () => {
             }
         )
 }),
-    onSubmit: values => {
+    onSubmit: async  (values, {resetForm}) => {
         setIsLoading(true);
+        setIsError(false);
+        setIsRequestFiished(false);
 
-        setTimeout(() => {
+
+        try {
+        const response = await loginUser(values);
+        const users = await getAllUsers(response.token);
+        const isAdmin = users.find(user => user.email === values.email).isAdmin;
+
+        localStorage.setItem("authToken", response.token);
+        localStorage.setItem("isAdmin", response.isAdmin);
+        setSuccessMessage
+
+
+            
+        } catch (error) {
+            setIsError(true);   
+        } finally {
             setIsLoading(false);
-            alert(JSON.stringify(values));
-        }, 1000);
-      },
+        }
+        
+
+
+        setIsLoading(false);
+      }
     }); 
 
     return (
