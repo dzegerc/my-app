@@ -3,25 +3,25 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import Section from '../../components/Section/Section';
-import DataLoader from '../../components/DataLoader/DataLoader';
 import {
     Title,
     Form,
     FormRow,
-    CheckboxWrapper,
     InputLabel,
     InputText,
-    InputCheckbox,
     InputError,
     ButtonSubmit
 } from '../../lib/style/generalStyles';
+import Loader from '../../components/Loader/Loader';
+
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const formik = useFormik({
         initialValues: {
             email: '',
-            password: ''
+            password: '',
+            passwordConfirmation: ''
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -30,7 +30,13 @@ const Login = () => {
             password: Yup.string()
                 .min(8, 'Password must be at least 8 caharacters long')
                 .required('Password is required'),
-            }
+            passwordConfirmation: Yup.string()
+                .test(
+                    'passwords-match',
+                    'password must match',
+                    function (value) {
+                        return this.parent.password === value
+                    }
         )
 }),
     onSubmit: values => {
@@ -40,12 +46,11 @@ const Login = () => {
             setIsLoading(false);
             alert(JSON.stringify(values));
         }, 1000);
-      },
-    }); 
-
-    return (
+    },
+ }); 
+return (
         <>
-            <Title>Register</Title>
+            <Title>Login</Title>
             <Section withoutTopPadding={true}>
                 {!isLoading
                      ? <Form onSubmit={formik.handleSubmit}>
@@ -56,9 +61,29 @@ const Login = () => {
                              type='text'
                              {...formik.getFieldProps('email')}
                          />
-                         {formik.touched.firstName && formik.errors.firstName
-                            ? <InputError>{formik.errors.firstName}</InputError>
+                         {formik.touched.email && formik.errors.email
+                            ? <InputError>{formik.errors.email}</InputError>
                             : null
                         }
                         </FormRow>
-                }
+                        <FormRow>
+                            <InputLabel htmlFor='password'>Password</InputLabel>
+                            <InputText
+                                id='password'
+                                type='text'
+                                {...formik.getFieldProps('password')}
+                            />
+                             {formik.touched.password && formik.errors.password
+                            ? <InputError>{formik.errors.password}</InputError>
+                            : null
+                        }
+                        </FormRow>
+                        <ButtonSubmit type="login">Login</ButtonSubmit>
+                    </Form>
+                : <Loader />
+            }
+        </Section> 
+        </>
+    );
+}
+export default Login;

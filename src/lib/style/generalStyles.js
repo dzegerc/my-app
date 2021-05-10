@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import {
     colors,
@@ -25,11 +25,11 @@ export const Grid = styled.div `
         }
     }
 `;
-export const Button = styled(NavLink) `
+export const ButtonStyle = css `
 display: block;
 text-decoration: none;
 width: 100%;
-height: 30px;
+height: 40px;
 line-height: 40px;
 text-align: center;
 border: 1px solid ${colors.red};
@@ -51,14 +51,26 @@ font-family: "Montserrat", sans-serif;
 }
 `;
 
-export const Title = styled.h2 `
+export const Button = styled(NavLink) `
+    ${ButtonStyle}
+`;
+
+export const ButtonSubmit = styled.button `
+    ${ButtonStyle}
+`;
+
+export const Title = styled.h1 `
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    font-size: 30px;
 `;
 
 export const Form = styled.div`
     width: 100%;
     text-align: center;
+    margin-left: 450px;
+    margin-top: 50px;
+
 
     @media screen and (${breakpoints.desktop}) {
         width: 400px
@@ -84,7 +96,8 @@ export const CheckboxWrapper = styled.div `
 
 export const InputLabel = styled.label `
     display: block;
-    font-weight: 600px;
+    text-align: left;
+    font-weight: bold;
     margin-bottom: 4px;
 
     @media screen and (${breakpoints.mobileLarge}) {
@@ -136,11 +149,13 @@ export const TextArea = styled.textarea `
 
 export const InputCheckbox = styled.input `
     margin-right: 12px;
+    
     width: 18px;
     height: 18px;
 `;
 
-export const InputError = styled.p `
+export const InputError = styled.div `
+    text-align: left;
     font-size: 14px;
     color: ${colors.red};
     padding-top: 8px;

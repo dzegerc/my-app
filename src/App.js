@@ -24,7 +24,7 @@ class App extends Component {
           <Route path="/events" component={Events} />
           <Route path="/event/:id" component={Event}  />
           <Route path="/login" component={Login} />
-          <Route path="/register" component={register} />
+          <Route path="/register" component={Register} />
       </Main>
       <Footer/>
     </>

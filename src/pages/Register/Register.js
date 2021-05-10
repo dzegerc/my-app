@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import Section from '../../components/Section/Section';
-import DataLoader from '../../components/DataLoader/DataLoader';
+import Loader from '../../components/Loader/Loader';
 import {
     Title,
     Form,
@@ -87,17 +87,54 @@ const Register = () => {
                         }
                     </FormRow>
                     <FormRow>
-                        <CheckboxWrapper>
-                            <InputCheckbox
-                                id='isAdmin'
-                                type='checkBox'
-                                {...formik.getFieldProps('isAdmin')}
+                         <InputLabel htmlFor='email'>Email</InputLabel>
+                         <InputText 
+                             id='email'
+                             type='text'
+                             {...formik.getFieldProps('email')}
+                         />
+                         {formik.touched.email && formik.errors.email
+                            ? <InputError>{formik.errors.email}</InputError>
+                            : null
+                        }
+                        </FormRow>
+                        <FormRow>
+                            <InputLabel htmlFor='password'>Password</InputLabel>
+                            <InputText
+                                id='password'
+                                type='password'
+                                {...formik.getFieldProps('password')}
                             />
-                            <InputLabel htmlFor='isAdmin' isCheckbox={true}>Register as Admin</InputLabel>
-                        </CheckboxWrapper>
+                             {formik.touched.password && formik.errors.password
+                            ? <InputError>{formik.errors.password}</InputError>
+                            : null
+                        }
+                        </FormRow>
+                        <FormRow>
+                            <InputLabel htmlFor='passwordConfirmation'>Confrim Password</InputLabel>
+                            <InputText
+                                id='passwordConfirmation'
+                                type='password'
+                                {...formik.getFieldProps('passwordConfirmation')}
+                            />
+                             {formik.touched.passwordConfirmation && formik.errors.passwordConfirmationpassword
+                            ? <InputError>{formik.errors.passwordConfirmation}</InputError>
+                            : null
+                        }
+                        </FormRow>
+                        <FormRow>
+                            <CheckboxWrapper>
+                                <InputCheckbox
+                                    id='isAdmin'
+                                    type='checkBox'
+                                    {...formik.getFieldProps('isAdmin')}
+                                />
+                                <InputLabel for='isAdmin' isCheckbox={true}>Register as Admin</InputLabel>
+                            </CheckboxWrapper>
                     </FormRow>
+                    <ButtonSubmit type="register">Register</ButtonSubmit>
                 </Form>
-                : <DataLoader/>
+                : <Loader/>
             }
         </Section>
     </>
