@@ -11,8 +11,7 @@ import Event from './pages/Event/Event';
 import Events from './pages/Events/Events';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import { register } from 'react-scroll/modules/mixins/scroller';
-
+import Admin from './pages/Admin/Admin';
 
 class App extends Component {
   render() {
@@ -25,6 +24,7 @@ class App extends Component {
           <Route path="/event/:id" component={Event}  />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/admin" component={Admin} />
       </Main>
       <Footer/>
     </>
