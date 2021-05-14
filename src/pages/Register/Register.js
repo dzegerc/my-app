@@ -21,8 +21,9 @@ import {
 
 const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isRequestFinished, setIsRequestFinished] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [successMessage, setSuccessMessage] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -52,8 +53,9 @@ const Register = () => {
                     }
                 )
         }),
-        onSubmit: (values, {resetForm}) => {
+        onSubmit: (values, { resetForm }) => {
             setIsLoading(true);
+            setIsRequestFinished(false);
 
             const user = {
                 email: values.email,
@@ -64,72 +66,82 @@ const Register = () => {
             }
 
             registerUser(user)
-                .then(result => {
-                    console.log(result);
+                .then(reset => {
                     resetForm({});
+                    setIsLoading(false);
+                    setIsRequestFinished(true);
                     setIsError(false);
-                    setSuccessMessage("You've registered, welcome!");
+                    setSuccessMessage('User is registered successfuly!');
+                    setTimeout(() => {
+                        setIsRequestFinished(false);
+                    }, 4000);
                 })
                 .catch(error => {
+                    setIsLoading(false);
+                    setIsRequestFinished(true);
+                    setIsError(true);
+                    setSuccessMessage('User registration failed!');
+
+
 
                 })
                 .finally(() => {
                     setIsLoading(false);
                     setIsRequestFinished(true);
                 });
-            
+
 
         },
-    }); 
+    });
     return (
-    <>
-        <Title>Register</Title>
-        <Section withoutTopPadding={true}>
-            {isRequestFinished &&
-                            <SuccessMessage isError={isError}>{successMessage}</SuccessMessage>
+        <>
+            <Title>Register</Title>
+            <Section withoutTopPadding={true}>
+                {isRequestFinished &&
+                    <SuccessMessage isError={isError}>{successMessage}</SuccessMessage>
 
-            }
-            {!isLoading
-                ? <Form onSubmit={formik.handleSubmit}>
-                    <FormRow>
-                        <InputLabel htmlFor='firstName'>First name</InputLabel>
-                        <InputText 
-                            id='firstName'
-                            type='text'
-                            {...formik.getFieldProps('firstName')}
-                        />
-                        {formik.touched.firstName && formik.errors.firstName
-                            ? <InputError>{formik.errors.firstName}</InputError>
-                            : null
-                        }
-                    </FormRow>
-                    <FormRow>
-                        <InputLabel htmlFor='lastName'>Last name</InputLabel>
-                        <InputText
-                            id='lastName'
-                            type='text'
-                            {...formik.getFieldProps('lastName')}
-                        />
-                        {formik.touched.lastName && formik.errors.lastName
-                            ? <InputError>{formik.errors.lastName}</InputError>
-                            : null
-                        }
-                    </FormRow>
-                    <FormRow>
-                        <CheckboxWrapper>
-                            <InputCheckbox
-                                id='isAdmin'
-                                type='checkBox'
-                                {...formik.getFieldProps('isAdmin')}
+                }
+                {!isLoading
+                    ? <Form onSubmit={formik.handleSubmit}>
+                        <FormRow>
+                            <InputLabel htmlFor='firstName'>First name</InputLabel>
+                            <InputText
+                                id='firstName'
+                                type='text'
+                                {...formik.getFieldProps('firstName')}
                             />
-                            <InputLabel htmlFor='isAdmin' isCheckbox={true}>Register as Admin</InputLabel>
-                        </CheckboxWrapper>
-                    </FormRow>
-                </Form>
-                : <DataLoader/>
-            }
-        </Section>
-    </>
-);
+                            {formik.touched.firstName && formik.errors.firstName
+                                ? <InputError>{formik.errors.firstName}</InputError>
+                                : null
+                            }
+                        </FormRow>
+                        <FormRow>
+                            <InputLabel htmlFor='lastName'>Last name</InputLabel>
+                            <InputText
+                                id='lastName'
+                                type='text'
+                                {...formik.getFieldProps('lastName')}
+                            />
+                            {formik.touched.lastName && formik.errors.lastName
+                                ? <InputError>{formik.errors.lastName}</InputError>
+                                : null
+                            }
+                        </FormRow>
+                        <FormRow>
+                            <CheckboxWrapper>
+                                <InputCheckbox
+                                    id='isAdmin'
+                                    type='checkBox'
+                                    {...formik.getFieldProps('isAdmin')}
+                                />
+                                <InputLabel htmlFor='isAdmin' isCheckbox={true}>Register as Admin</InputLabel>
+                            </CheckboxWrapper>
+                        </FormRow>
+                    </Form>
+                    : <DataLoader />
+                }
+            </Section>
+        </>
+    );
 }
 export default Register;
