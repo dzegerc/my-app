@@ -27,64 +27,41 @@ import {
     TextArea
 } from '../../lib/style/generalStyles';
 import { map } from 'lodash';
+import { MdDelete } from 'react-icons/md';
 
-const company = [
-    'Speck' ,
-    'Five',
-    'Bornfight',
-    'Agency 04'
-];
-const category = [
-    {
-        value: 'marketing',
-        label: '#marketing'
-    },
-    {
-        value: 'design',
-        label: '#design'
-    },
-    {
-        value: 'frontend',
-        label: '#frontend'
-    },
-    {
-        value: 'backend',
-        label: '#backend'
-    }
-];
+
 const Table = () => {
-    const [isShowModal, setIsShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [ events,setEvents] = useState([]);
 
     const formik = useFormik({
         initialValues: {
-            id: 1,
             title: '',
             description: '',
-            date: '',
             category: '',
+            date: '',
             timeFrom: '',
             timeTo: '',
             capacity: '',
-            company: ''
+            firm: ''
         },
             validationSchema: Yup.object({
                 title: Yup.string()
                     .required('Title is required'),
                 description: Yup.string()
                     .required('Description is required'),
-                date: Yup.string()
-                    .required('Date is required'),
                 category: Yup.string()
                     .required('Category is required'),
+                date: Yup.string()
+                    .required('Date is required'),
                 timeFrom: Yup.string()
                     .required('Time from is required'),
                 timeTo: Yup.string()
                     .required('Time to required'),
                 capacity: Yup.string()
                     .required('Capacity is required'),
-                company: Yup.string()
-                    .required('Company is required'),            
+                firm: Yup.string()
+                    .required('Firm is required'),            
             }),
             onSubmit:(values, {resetForms}) => {
                 setEvents({
@@ -95,12 +72,7 @@ const Table = () => {
                 resetForms({});
             },
     });
-    const handleDeleteEvent = index => {
-        let eventsUpdated = [...events];
-        eventsUpdated.splice(index, 1);
-
-        setEvents(eventsUpdated);
-    };
+ 
 
 return (
     <>
