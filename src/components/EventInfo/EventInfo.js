@@ -56,7 +56,7 @@ const EventInfo = ({
                         <ItemValue>{company}</ItemValue>
                     </Item>
                 </ContentRow>
-                <Button to={route} text={buttonText}/> 
+                <Button to={route}>{buttonText}</Button>
                 <Description>{description}</Description>
             </Content>
         </EventInfoStyle>

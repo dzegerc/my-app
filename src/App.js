@@ -11,10 +11,20 @@ import Event from './pages/Event/Event';
 import Events from './pages/Events/Events';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import Admin from './pages/Admin/Admin';
+import { useEffect } from 'react/cjs/react.production.min';
 
+const App = ()  => {
+  const { pathname } = userLocation();
 
-class App extends Component {
-  render() {
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [pathname]);
+  useEffect(() => {
+    localStorage.getItem("isAdmin");
+    localStorage.getItem("authToken");
+  }, []);
+
     return (
       <>
       <Header />
@@ -24,10 +34,10 @@ class App extends Component {
           <Route path="/event/:id" component={Event}  />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/admin" component={Admin} />
       </Main>
       <Footer/>
     </>
   );
-}
 }
 export default App;

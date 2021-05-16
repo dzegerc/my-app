@@ -48,7 +48,7 @@ const EventsInfo = ({
                     </Item>
                 </ContentRow>
             </Content>
-            <Button to={route} text={buttonText}/> 
+            <Button to={route}>{buttonText}</Button>
             </EventsInfoStyle>
         </>
     );

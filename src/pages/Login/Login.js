@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import Section from '../../components/Section/Section';
-import DataLoader from '../../components/DataLoader/DataLoader';
+import Loader from '../../components/Loader/Loader';
 import {
     Title,
     Form,
@@ -18,7 +18,7 @@ import {
 } from '../../lib/style/generalStyles';
  import {loginUser} from '../../api/login';
  import { getAllUsers } from '../../api/user'; 
-import { values } from 'lodash';
+import { loginUser } from '../../api/login';
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -37,11 +37,10 @@ const Login = () => {
             }
         )
 }),
-    onSubmit: async  (values, {resetForm}) => {
+    onSubmit: async (values, {resetForm }) => {
         setIsLoading(true);
         setIsError(false);
         setIsRequestFiished(false);
-
 
         try {
         const response = await loginUser(values);
@@ -50,25 +49,26 @@ const Login = () => {
 
         localStorage.setItem("authToken", response.token);
         localStorage.setItem("isAdmin", response.isAdmin);
-        setSuccessMessage
+        setSuccessMessage("You've registered, welcome!");
 
+        resetForm({});
+        setTimeout(() => {
+            setIsRequestFiished(false);
+        }, 4000);
 
-            
         } catch (error) {
-            setIsError(true);   
+            setIsError(true);  
+            setSuccessMessage("Something wrong.");
+ 
         } finally {
             setIsLoading(false);
+            setIsRequestFiished(true);
         }
-        
-
-
-        setIsLoading(false);
-      }
     }); 
 
     return (
         <>
-            <Title>Register</Title>
+            <Title>Login</Title>
             <Section withoutTopPadding={true}>
                 {!isLoading
                      ? <Form onSubmit={formik.handleSubmit}>
@@ -79,9 +79,29 @@ const Login = () => {
                              type='text'
                              {...formik.getFieldProps('email')}
                          />
-                         {formik.touched.firstName && formik.errors.firstName
-                            ? <InputError>{formik.errors.firstName}</InputError>
+                         {formik.touched.email && formik.errors.email
+                            ? <InputError>{formik.errors.email}</InputError>
                             : null
                         }
                         </FormRow>
-                }
+                        <FormRow>
+                            <InputLabel htmlFor='password'>Password</InputLabel>
+                            <InputText
+                                id='password'
+                                type='text'
+                                {...formik.getFieldProps('password')}
+                            />
+                             {formik.touched.password && formik.errors.password
+                            ? <InputError>{formik.errors.password}</InputError>
+                            : null
+                        }
+                        </FormRow>
+                        <ButtonSubmit type="login">Login</ButtonSubmit>
+                    </Form>
+                : <Loader />
+            }
+        </Section> 
+        </>
+    );
+}
+export default Login;

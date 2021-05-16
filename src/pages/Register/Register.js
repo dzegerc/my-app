@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from '../../api/register';
+import apiOrigin from '../../api/api';
 
 
 import Section from '../../components/Section/Section';
-import DataLoader from '../../components/DataLoader/DataLoader';
+import Loader from '../../components/Loader/Loader';
 import {
     Title,
     Form,
@@ -99,7 +100,6 @@ const Register = () => {
             <Section withoutTopPadding={true}>
                 {isRequestFinished &&
                     <SuccessMessage isError={isError}>{successMessage}</SuccessMessage>
-
                 }
                 {!isLoading
                     ? <Form onSubmit={formik.handleSubmit}>
@@ -138,7 +138,7 @@ const Register = () => {
                             </CheckboxWrapper>
                         </FormRow>
                     </Form>
-                    : <DataLoader />
+                    : <Loader />
                 }
             </Section>
         </>
