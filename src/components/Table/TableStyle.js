@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { colors } from "../../lib/style/theme";
+import { colors, breakpoints } from "../../lib/style/theme";
 
 export const ButtonStyle = css `
     display: block;
@@ -23,41 +23,47 @@ export const ButtonStyle = css `
     }
 `;
 
-export const ButtonAdd = styled.button `
+export const ButtonAdd = styled.button`
     ${ButtonStyle}
 `;
-export const TableOptions = styled.div ` 
-
-`;
-export const TableWrapper = styled.div `
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 16px;
-`;
-export const TableHead = styled.head `
-    display: grid;
-`;
-export const TableBody = styled.body ` 
-    display: grid;
-`;
-export const Th = styled.th ` 
-    border: 1px solid rgb(190, 190, 190);
-    padding: 10px;
-`;
-export const Tr = styled.tr `
-    background-color: ${colors.white};
-`;
-export const Td = styled.td `
+export const EventEmpty = styled.p `
+text-align: center;
+`
+export const Wrapper = styled.div `
+    width: 100%;
+    font-weight: 550;
     text-align: center;
-`;
+    margin-top: 30px;
+    line-height: 50px;
+    border-spacing: 0;
+    border-radius:6px;
+    overflow: hidden;
 
-export const VscTrash = styled.div `
-    position: absolute;
+@media screen and (${breakpoints.mobileLarge}) {
+    &:child {
+        display: table-cell;
+    }
+}
+@media screen and (${breakpoints.tablet}) { 
+    &:child {
+        display: table-cell;
+    }
+}
 `;
-export const TableEmpty = styled.p `
-    text-align: center;
-    font-size: 16px;
+export const TableHead = styled.tr `
+    &:hover{
+        background-color: ${colors.hoverLightGray}
+}
 `;
+export const TableBody = styled.tbody ` 
+    margin-top: auto;
+    margin-bottom: auto;
+    `;
+
 export const MdDelete = styled.button ` 
-    position: absolute;
+    border: none;
+    background-color: inherit;
+    &:hover{
+        cursor: pointer;
+    }
 `;

@@ -5,33 +5,27 @@ import {
     colors
 } from '../../lib/style/theme';
 
-export const EventInfo = styled.div `
-    border-radius: 6px;
+export const EventInfoStyle = styled.div `
     max-width: 1280px;
-    box-shadow: ${boxShadow};
-    transition: ${transitionCubic};
+    width: 50%;
     padding: 10px;
-    margin: 0 auto; border: 1px solid ${colors.lightGrey};
-`;
+    `;
 
 export const Title = styled.h2 `
     text-align: center;
     margin-bottom: 30px;
 `;
 
-export const Figure = styled.figure `
-    width: 100%;
-    height: 230px;
-    margin-bottom: 24px;
-`;
-
 export const Image = styled.img ` 
+    display: flex;
     width: 100%;
     height: 100%;
     object-fit: cover;
 `;
 export const Content = styled.div `
+    width: 100%;
     margin-bottom: 15px;
+    
 `;
 
 export const ContentRow = styled.div `
@@ -56,6 +50,7 @@ export const ItemValue = styled.p `
 `;
 
 export const Description = styled.div `
+    width: 50%;
     font-size: 14px;
     line-height: 150%;
 `;

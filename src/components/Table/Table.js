@@ -2,16 +2,11 @@ import React, {useState} from 'react';
 import Modal from '../Modal/Modal';
 import { useFormik  } from 'formik';
 import * as Yup from 'yup';
-import { VscTrash } from 'react-icons/vsc';
 import {
-    TableOptions,
-    TableWrapper,
+    Wrapper,
     TableHead,
     TableBody,
-    Th,
-    Tr,
-    Td,
-    TableEmpty,
+    EventEmpty,
     MdDelete,
     ButtonAdd
 } from './TableStyle';
@@ -26,9 +21,22 @@ import {
     InputError,
     TextArea
 } from '../../lib/style/generalStyles';
-import { map } from 'lodash';
-import { MdDelete } from 'react-icons/md';
 
+const options = [
+    { value: '', label: 'Select...'},
+    { value: 'marketing', label: '#marketing'},
+    { value: 'frontend', label: '#frontend'},
+    { value: 'design', label: '#design'},
+    { value: 'backend', label: '#backend'}
+];
+
+const firm = [
+    { value: '', label: 'Select...'},
+    { value: 'speck', label: 'Speck'},
+    { value: 'five', label: 'Five'},
+    { value: 'bornfight', label: 'Bornfight'},
+    { value: 'agency04', label: 'Agency 04'}
+];
 
 const Table = () => {
     const [showModal, setShowModal] = useState(false);
@@ -68,42 +76,80 @@ const Table = () => {
                     ...events,
                     values
                 });
-                setIsShowModal(false);
+                setShowModal(false);
                 resetForms({});
             },
     });
- 
 
+    const deleteEvent = id => {
+        let eventsUpdated = [...events];
+        eventsUpdated.splice(id, 1);
+
+        setEvents(eventsUpdated);
+    };
+ 
 return (
     <>
-        {isShowModal &&
-            <Modal
-                title="Add event"
-                handleModalClose={() => setIsShowModal(false)}>
-                    <Form fullWidth={true} onSubmit={formik.handleSubmit}>
-                        <FormRow>
-                            <InputLabel htmlFor="title">Title</InputLabel>
-                            <InputText 
-                                id='title'
-                                type='text'
-                                {...formik.getFieldProps('title')}
-                            />
-                            {formik.touched.title && formik.errors.title
-                            ? <InputError>{formik.errors.title}</InputError>
-                            : null
-                            }
-                        </FormRow>
-                        <FormRow>
-                            <InputLabel htmlFor="description">Description</InputLabel>
-                            <TextArea
-                                id='description'
-                                {...formik.getFieldProps('description')}
-                            />
-                            {formik.touched.description && formik.errors.description
-                            ?<InputError>{formik.errors.description}</InputError>
-                            : null
-                            }
-                        </FormRow>
+         <ButtonAdd onClick={() => setShowModal(true)}>Add event</ButtonAdd>
+            {events.length > 0
+                ? <Wrapper>
+                    <TableHead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Time from</th>
+                            <th>Time to</th>
+                            <th>Capacity</th>
+                            <th>Firm</th>
+                            <th></th>
+                        </tr>
+                    </TableHead>
+                    <TableBody>
+                        {events.map(event => 
+                            <tr key={event.id}>
+                                <td>{event.title}</td>
+                                <td>{event.date}</td>
+                                <td>{event.timeFrom}</td>
+                                <td>{event.timeTo}</td>
+                                <td>{event.capacity}</td>
+                                <td>{event.company}</td>
+                                <td>
+                                    <MdDelete onClick={() => deleteEvent(event.id)}/>
+                                </td>
+                            </tr>
+                        )}
+                    </TableBody>
+                </Wrapper> 
+                : <EventEmpty>There are no events yet!</EventEmpty>
+                    }
+                { showModal && 
+                    <Modal modalClose = {() => setShowModal(false)}>
+                         <Form  onSubmit={formik.handleSubmit}>
+                            <FormRow>
+                                <InputLabel htmlFor="title">Title</InputLabel>
+                                <InputText 
+                                    id='title'
+                                    type='text'
+                                    {...formik.getFieldProps('title')}
+                                />
+                                {formik.touched.title && formik.errors.title
+                                ? <InputError>{formik.errors.title}</InputError>
+                                : null
+                                }
+                            </FormRow>
+                            <FormRow>
+                                <InputLabel htmlFor="description">Description</InputLabel>
+                                <TextArea
+                                    id='description'
+                                    type='text'
+                                    {...formik.getFieldProps('description')}
+                                />
+                                {formik.touched.description && formik.errors.description
+                                ?<InputError>{formik.errors.description}</InputError>
+                                : null
+                                }
+                            </FormRow>
                         <FormColumns>
                             <FormRow>
                                 <InputLabel htmlFor="category">Category</InputLabel>
@@ -111,8 +157,9 @@ return (
                                     id='category'
                                     {...formik.getFieldProps('category')}
                                 >
-                                    <Option value="">Select...</Option>
-                                    {category.map(category => <Option key={category.value} value={category.value}>{category.label}</Option>)}
+                                    {options.map((Option) => 
+                                    <Option value={options.value}>{options.label}</Option>
+                                    )}
                                 </Select>
                                 {formik.touched.category && formik.errors.category
                                 ? <InputError>{formik.errors.category}</InputError>
@@ -126,13 +173,13 @@ return (
                                     type='text'
                                     {...formik.getFieldProps('date')}
                                 />
-                                 {formik.touched.date && formik.errors.date
+                                {formik.touched.date && formik.errors.date
                                 ? <InputError>{formik.errors.date}</InputError>
                                 : null
                                 }
                             </FormRow>
-                        </FormColumns>
-                        <FormColumns>
+                         </FormColumns>
+                         <FormColumns>
                             <FormRow>
                                 <InputLabel htmlFor="timeFrom">Time from</InputLabel>
                                 <InputText
@@ -140,19 +187,19 @@ return (
                                     type='text'
                                     {...formik.getFieldProps('timeFrom')}
                                 />
-                                 {formik.touched.timeFrom && formik.errors.timeFrom
+                                {formik.touched.timeFrom && formik.errors.timeFrom
                                 ? <InputError>{formik.errors.timeFrom}</InputError>
                                 : null
                                 }
-                            </FormRow>
-                            <FormRow>
+                             </FormRow>
+                             <FormRow>
                                 <InputLabel htmlFor="timeTo">Time to</InputLabel>
                                 <InputText
                                     id='timeTo'
                                     type='text'
                                     {...formik.getFieldProps('timeTo')}
                                 />
-                                 {formik.touched.timeTo && formik.errors.timeTo
+                                {formik.touched.timeTo && formik.errors.timeTo
                                 ? <InputError>{formik.errors.timeTo}</InputError>
                                 : null
                                 }
@@ -166,7 +213,7 @@ return (
                                     type='text'
                                     {...formik.getFieldProps('capacity')}
                                 />
-                                 {formik.touched.capacity && formik.errors.capacity
+                                {formik.touched.capacity && formik.errors.capacity
                                 ? <InputError>{formik.errors.capacity}</InputError>
                                 : null
                                 }
@@ -177,58 +224,30 @@ return (
                                     id='company'
                                     {...formik.getFieldProps('company')}
                                 >
-                                    <Option value="">Select...</Option>
-                                    {company-map((company, index) => <Option key={index} value={company}>{company}</Option>)}
+                                    {firm.map((Option) =>
+                                    <Option value={firm.value}>{firm.label}</Option>
+                                    )}
                                 </Select>
                                 {formik.touched.company && formik.errors.company
                                 ? <InputError>{formik.errors.company}</InputError>
                                 : null
                                 }
+                             </FormRow>
+                            </FormColumns>
+                             <FormRow>
+                                <ButtonAdd type="add">Add event</ButtonAdd>
                             </FormRow>
-                        </FormColumns>
-                        <FormRow>
-                            <ButtonAdd type="add">Add event</ButtonAdd>
-                        </FormRow>
-                    </Form>
-                </Modal>
-            }
-            <TableOptions>
-                <ButtonAdd onClick={{} = setIsShowModal(true)}>Add event</ButtonAdd>
-            </TableOptions>
-            {events.length > 0
-                ? <TableWrapper>
-                    <TableHead>
-                        <Tr>
-                            <Th>ID</Th>
-                            <Th>Title</Th>
-                            <Th>Date</Th>
-                            <Th>Time from</Th>
-                            <Th>Time to</Th>
-                            <Th>Capacity</Th>
-                            <Th>Company</Th>
-                            <Th></Th>
-                        </Tr>
-                    </TableHead>
-                    <TableBody>
-                        {events.map[(event, index) => 
-                            <Tr key={index}>
-                                <Td>{event.id}</Td>
-                                <Td>{event.title}</Td>
-                                <Td>{event.date}</Td>
-                                <Td>{event.timeFrom}</Td>
-                                <Td>{event.timeTo}</Td>
-                                <Td>{event.capacity}</Td>
-                                <Td>{event.company}</Td>
-                                <VscTrash>
-                                    <MdDelete onClick={() => handleDeleteEvent(index)}/>
-                                </VscTrash>
-                            </Tr>]
-                        }
-                    </TableBody>
-                </TableWrapper> 
-                : <TableEmpty>There are no events yet!</TableEmpty>
-                    })
-        </>
-);
+                        </Form>
+                    </Modal>
+                }
+         </>
+    );
 }
 export default Table;
+
+
+
+           
+            
+                    
+         

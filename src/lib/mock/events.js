@@ -34,7 +34,7 @@ const eventsMock = [
         imageUrl: ImageMarketing,
         imageAlt: 'Digital marketing workshop',
         title: 'Digital marketing workshop',
-        shortDescription: 'Learn how to use Google Ads and social networks to gain customers for your digital product...',
+        shortDescription: 'Learn how to use Google Ads and social networks to gain customers for your digital...',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam consectetur voluptates quibusdam, magnam aliquam quasi natus officiis, ipsum mollitia temporibus magni earum, repellat at quia asperiores reprehenderit adipisci. Iure, ad. Lorem ipsum dolor sit amet consectetur adipisicing elit. A pariatur odio vero quis neque ullam! Odio alias voluptatum maxime excepturi perspiciatis sequi distinctio, quisquam ab aliquid! Est, sit nostrum! Consectetur?',
         isFeatured: true,
         location: 'Šumica 18',

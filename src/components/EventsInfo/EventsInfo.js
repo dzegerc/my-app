@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../../lib/style/generalStyles';
 import {
-    EventsInfo as EventsInfoStyle,
+    EventsInfoStyled,
     Title,
     Content,
     ContentRow,
@@ -9,10 +9,6 @@ import {
     ItemTitle,
     ItemValue
 } from './EventsInfoStyle';
-
-
-
-
 const EventsInfo = ({
     title,
     location,
@@ -24,7 +20,7 @@ const EventsInfo = ({
 }) => {
     return (
         <>
-        <EventsInfoStyle>
+        <EventsInfoStyled>
             <Title>{title}</Title>
             <Content>
                 <ContentRow>
@@ -48,8 +44,8 @@ const EventsInfo = ({
                     </Item>
                 </ContentRow>
             </Content>
-            <Button to={route} text={buttonText}/> 
-            </EventsInfoStyle>
+            <Button to={route}>{buttonText}</Button>
+            </EventsInfoStyled>
         </>
     );
 }

@@ -7,10 +7,8 @@ import Section from '../../components/Section/Section';
 
 import {
   Title,
-  Figure,
   Image,
   Content,
-  ContentRow,
   Description
 } from '../../components/EventInfo/EventInfoStyle';
 
@@ -34,19 +32,16 @@ const Event = (props) => {
         <>
           <Section>
             <Title>{event.title}</Title>
-            <Figure>
                 <Image src={event.imageURL} alt={event.imageAlt}/>
-            </Figure>
             <Content>
-              <ContentRow>
                 <EventInfo
                     location={event.location}
                     date={event.dateTime}
                     emptySpaces={event.availability}
                     company={event.company}
+                    buttonText= "Prijavi se"
                     route= {`/event/${event.id}`}
                 />
-                 </ContentRow>
                  <Description>{event.description}</Description>
                 </Content>
             </Section>

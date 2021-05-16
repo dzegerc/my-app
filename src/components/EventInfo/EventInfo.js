@@ -2,9 +2,8 @@
 import React from 'react';
 import { Button } from '../../lib/style/generalStyles';
 import {
-    EventInfo as EventInfoStyle,
+     EventInfoStyle,
     Title,
-    Figure,
     Image,
     Content,
     ContentRow,
@@ -16,7 +15,7 @@ import {
 
 
 const EventInfo = ({
-    image,
+    imageURL,
     title,
     location,
     date,
@@ -32,9 +31,7 @@ const EventInfo = ({
         <>
         <EventInfoStyle>
             <Title>{title}</Title>
-            <Figure>
-                <Image src={image} alt={imageAlt}/>
-            </Figure>
+                <Image src={imageURL} alt={imageAlt}/>
             <Content>
                 <ContentRow>
                     <Item>
@@ -56,7 +53,7 @@ const EventInfo = ({
                         <ItemValue>{company}</ItemValue>
                     </Item>
                 </ContentRow>
-                <Button to={route} text={buttonText}/> 
+                <Button to={route}>{buttonText}</Button>
                 <Description>{description}</Description>
             </Content>
         </EventInfoStyle>

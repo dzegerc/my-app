@@ -42,6 +42,7 @@ font-family: "Montserrat", sans-serif;
 
 &:hover {
   cursor: pointer;
+  color: ${colors.white};
   border-color: ${colors.yellow};
   background: ${colors.yellow};
 }

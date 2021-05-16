@@ -1,15 +1,28 @@
 import React from 'react';
-import Table from '../Table/Table';
-import Section from '../Section/Section';
+import { 
+    Wrapper,
+    Inner,
+    Header,
+    Title,
+   CloseButton
+} from './ModalStyle';
+import { VscChromeClose } from "react-icons/vsc";
 
+const Modal = (props) => {
 
-const Modal = ({ showModal, setShowModal}) => {
-    return(
-        <>
-
-                
-        </>
-        
+    return (
+        <Wrapper>
+            <Inner>
+                <Header>
+                    <Title>Add Event</Title>
+                    <CloseButton onClick={props.modalClose}>
+                        <VscChromeClose size={25}/>
+                    </CloseButton>
+                </Header>
+                {props.children}
+            </Inner>
+        </Wrapper>
     );
 }
+
 export default Modal;
