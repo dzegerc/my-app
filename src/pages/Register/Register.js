@@ -13,7 +13,7 @@ import {
     InputText,
     InputCheckbox,
     InputError,
-    ButtonSubmit
+    Button
 } from '../../lib/style/generalStyles';
 
 const Register = () => {
@@ -129,10 +129,10 @@ const Register = () => {
                                     type='checkBox'
                                     {...formik.getFieldProps('isAdmin')}
                                 />
-                                <InputLabel for='isAdmin' isCheckbox={true}>Register as Admin</InputLabel>
+                                <InputLabel htmlFor='isAdmin'>Register as Admin</InputLabel>
                             </CheckboxWrapper>
                     </FormRow>
-                    <ButtonSubmit type="register">Register</ButtonSubmit>
+                    <Button type="register" >Register</Button>
                 </Form>
                 : <Loader/>
             }

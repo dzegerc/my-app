@@ -157,8 +157,8 @@ return (
                                     id='category'
                                     {...formik.getFieldProps('category')}
                                 >
-                                    {options.map((Option) => 
-                                    <Option value={options.value}>{options.label}</Option>
+                                    {options.map((option) => 
+                                    <Option value={option.value}>{option.label}</Option>
                                     )}
                                 </Select>
                                 {formik.touched.category && formik.errors.category
@@ -224,8 +224,8 @@ return (
                                     id='company'
                                     {...formik.getFieldProps('company')}
                                 >
-                                    {firm.map((Option) =>
-                                    <Option value={firm.value}>{firm.label}</Option>
+                                    {firm.map((option) =>
+                                    <Option value={option.value}>{option.label}</Option>
                                     )}
                                 </Select>
                                 {formik.touched.company && formik.errors.company
