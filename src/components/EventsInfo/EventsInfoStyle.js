@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import {
     transitionCubic,
@@ -5,13 +6,13 @@ import {
     colors
 } from '../../lib/style/theme';
 
-export const EventsInfo = styled.div `
-    max-width: 1300;
+export const EventsInfoStyled = styled.div `
+    max-width: 1300px;
+    margin-top: 20px;
     border: 1px solid ${colors.lightGrey};
     transition: ${transitionCubic};
     border-radius: 6px;
     padding: 10px;
-
     &:hover {
         box-shadow: ${boxShadow};
     }
@@ -33,7 +34,6 @@ export const ContentRow = styled.div `
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
-
     &:last-child {
         text-align: left;
     }

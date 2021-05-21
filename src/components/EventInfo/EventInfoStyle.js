@@ -5,7 +5,7 @@ import {
     colors
 } from '../../lib/style/theme';
 
-export const EventInfo = styled.div `
+export const EventInfoStyle = styled.div `
     border-radius: 6px;
     max-width: 1280px;
     box-shadow: ${boxShadow};

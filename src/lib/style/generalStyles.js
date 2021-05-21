@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import {
     colors,
@@ -65,6 +65,7 @@ export const FormStyle = css `
     font-size: 14px;
     outline: none;
     font-family: "Montserrat", sans-serif;
+
     @media screen and (${breakpoints.desktop}){
         font-size: 16px;
     }
@@ -77,18 +78,28 @@ export const Title = styled.h1 `
     text-align: center;
     margin-top: 30px;
     font-size: 30px;
+
+    @media screen and (${breakpoints.mobileLarge}) {
+        font-size: 24px;
+    }
+    @media screen and (${breakpoints.desktop}) {
+        font-size: 28px;
+    }
+    @media screen and (${breakpoints.desktopLarge}) {
+        font-size: 32px;
+        margin-bottom: 48px;
+        padding-top: 100px;
+    }
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
     width: 100%;
     text-align: center;
     margin-left: 450px;
     margin-top: 50px;
-    @media screen and (${breakpoints.desktop}) {
-        width: 400px
-    }
-    @media screen and (${breakpoints.desktopLarge}) {
-        width: 400px
+
+    @media screen and (${breakpoints.mobileLarge}) {
+        width: 400px;
     }
 `;
 
@@ -109,6 +120,7 @@ export const InputLabel = styled.label `
     text-align: left;
     font-weight: bold;
     margin-bottom: 4px;
+
     @media screen and (${breakpoints.mobileLarge}) {
         font-size: 14px;
     }

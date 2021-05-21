@@ -8,20 +8,21 @@ import {
     Title,
     Form,
     FormRow,
-    CheckboxWrapper,
     InputLabel,
     InputText,
-    InputCheckbox,
     InputError,
     ButtonSubmit,
-    successMessage
+    SuccessMessage
 } from '../../lib/style/generalStyles';
  import {loginUser} from '../../api/login';
  import { getAllUsers } from '../../api/user'; 
-import { loginUser } from '../../api/login';
+
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isRequestFinished, setIsRequestFinished] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -35,12 +36,12 @@ const Login = () => {
                 .min(8, 'Password must be at least 8 caharacters long')
                 .required('Password is required'),
             }
-        )
-}),
+        ),
+
     onSubmit: async (values, {resetForm }) => {
         setIsLoading(true);
         setIsError(false);
-        setIsRequestFiished(false);
+        setIsRequestFinished(false);
 
         try {
         const response = await loginUser(values);
@@ -53,7 +54,7 @@ const Login = () => {
 
         resetForm({});
         setTimeout(() => {
-            setIsRequestFiished(false);
+            setIsRequestFinished(false);
         }, 4000);
 
         } catch (error) {
@@ -62,14 +63,18 @@ const Login = () => {
  
         } finally {
             setIsLoading(false);
-            setIsRequestFiished(true);
+            setIsRequestFinished(false);
         }
-    }); 
+    }
+}); 
 
     return (
         <>
             <Title>Login</Title>
             <Section withoutTopPadding={true}>
+                {isRequestFinished &&
+                        <SuccessMessage isError={isError}>{successMessage}</SuccessMessage>
+                    }
                 {!isLoading
                      ? <Form onSubmit={formik.handleSubmit}>
                      <FormRow>
@@ -88,7 +93,7 @@ const Login = () => {
                             <InputLabel htmlFor='password'>Password</InputLabel>
                             <InputText
                                 id='password'
-                                type='text'
+                                type='password'
                                 {...formik.getFieldProps('password')}
                             />
                              {formik.touched.password && formik.errors.password

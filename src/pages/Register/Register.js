@@ -102,30 +102,66 @@ const Register = () => {
                     <SuccessMessage isError={isError}>{successMessage}</SuccessMessage>
                 }
                 {!isLoading
-                    ? <Form onSubmit={formik.handleSubmit}>
+                    ? <Form onSubmit={formik.onSubmit}>
                         <FormRow>
-                            <InputLabel htmlFor='firstName'>First name</InputLabel>
-                            <InputText
-                                id='firstName'
-                                type='text'
-                                {...formik.getFieldProps('firstName')}
-                            />
-                            {formik.touched.firstName && formik.errors.firstName
-                                ? <InputError>{formik.errors.firstName}</InputError>
-                                : null
-                            }
+                        <InputLabel htmlFor='firstName'>First name</InputLabel>
+                        <InputText 
+                            id='firstName'
+                            type='text'
+                            {...formik.getFieldProps('firstName')}
+                        />
+                        {formik.touched.firstName && formik.errors.firstName
+                            ? <InputError>{formik.errors.firstName}</InputError>
+                            : null
+                        }
+                    </FormRow>
+                    <FormRow>
+                        <InputLabel htmlFor='lastName'>Last name</InputLabel>
+                        <InputText
+                            id='lastName'
+                            type='text'
+                            {...formik.getFieldProps('lastName')}
+                        />
+                        {formik.touched.lastName && formik.errors.lastName
+                            ? <InputError>{formik.errors.lastName}</InputError>
+                            : null
+                        }
+                    </FormRow>
+                    <FormRow>
+                         <InputLabel htmlFor='email'>Email</InputLabel>
+                         <InputText 
+                             id='email'
+                             type='text'
+                             {...formik.getFieldProps('email')}
+                         />
+                         {formik.touched.email && formik.errors.email
+                            ? <InputError>{formik.errors.email}</InputError>
+                            : null
+                        }
                         </FormRow>
                         <FormRow>
-                            <InputLabel htmlFor='lastName'>Last name</InputLabel>
+                            <InputLabel htmlFor='password'>Password</InputLabel>
                             <InputText
-                                id='lastName'
-                                type='text'
-                                {...formik.getFieldProps('lastName')}
+                                id='password'
+                                type='password'
+                                {...formik.getFieldProps('password')}
                             />
-                            {formik.touched.lastName && formik.errors.lastName
-                                ? <InputError>{formik.errors.lastName}</InputError>
-                                : null
-                            }
+                             {formik.touched.password && formik.errors.password
+                            ? <InputError>{formik.errors.password}</InputError>
+                            : null
+                        }
+                        </FormRow>
+                        <FormRow>
+                            <InputLabel htmlFor='passwordConfirmation'>Confrim Password</InputLabel>
+                            <InputText
+                                id='passwordConfirmation'
+                                type='password'
+                                {...formik.getFieldProps('passwordConfirmation')}
+                            />
+                             {formik.touched.passwordConfirmation && formik.errors.passwordConfirmationpassword
+                            ? <InputError>{formik.errors.passwordConfirmation}</InputError>
+                            : null
+                        }
                         </FormRow>
                         <FormRow>
                             <CheckboxWrapper>
@@ -134,14 +170,15 @@ const Register = () => {
                                     type='checkBox'
                                     {...formik.getFieldProps('isAdmin')}
                                 />
-                                <InputLabel htmlFor='isAdmin' isCheckbox={true}>Register as Admin</InputLabel>
+                                <InputLabel htmlFor='isAdmin'>Register as Admin</InputLabel>
                             </CheckboxWrapper>
-                        </FormRow>
-                    </Form>
-                    : <Loader />
-                }
-            </Section>
-        </>
-    );
+                    </FormRow>
+                    <ButtonSubmit type="register" >Register</ButtonSubmit>
+                </Form>
+                : <Loader/>
+            }
+        </Section>
+    </>
+);
 }
 export default Register;

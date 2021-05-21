@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { Button } from '../../lib/style/generalStyles';
 import {
-    EventInfo as EventInfoStyle,
+    EventInfoStyle,
     Title,
-    Figure,
     Image,
     Content,
     ContentRow,
@@ -16,7 +14,7 @@ import {
 
 
 const EventInfo = ({
-    image,
+    imageURL,
     title,
     location,
     date,
@@ -32,9 +30,7 @@ const EventInfo = ({
         <>
         <EventInfoStyle>
             <Title>{title}</Title>
-            <Figure>
-                <Image src={image} alt={imageAlt}/>
-            </Figure>
+                <Image src={imageURL} alt={imageAlt}/>
             <Content>
                 <ContentRow>
                     <Item>
@@ -64,7 +60,6 @@ const EventInfo = ({
     );
 }
 export default EventInfo;
-
 
 
 

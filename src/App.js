@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useLocation } from 'react-router-dom';
 import './App.scss';
 
 import Header from './components/Header/Header';
@@ -12,10 +12,9 @@ import Events from './pages/Events/Events';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Admin from './pages/Admin/Admin';
-import { useEffect } from 'react/cjs/react.production.min';
 
 const App = ()  => {
-  const { pathname } = userLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0,0);

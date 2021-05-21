@@ -24,7 +24,7 @@ const Event = ({
             </Figure>
             <Title>{title}</Title>
             <Description>{description}</Description>
-            <Button to={route} text={buttonText}/> 
+            <Button to={route}>{buttonText}</Button> 
         </EventStyle>
     );
 }
