@@ -7,6 +7,8 @@ import Hero from '../../components/Hero/Hero';
 import Section from '../../components/Section/Section';
 import { Grid } from '../../lib/style/generalStyles';
 import Event from '../../components/Event/Event';
+import eventsStore from '../../components/store/EventStore';
+import { observer } from 'mobx-react-lite';
 
 
 
@@ -23,6 +25,9 @@ const Home = () => {
         <>
             <Hero/>
             <Section title="Featured Events">
+                {
+                    eventsStore.eventsLenght > 0
+                }
             <Loader />
                 {events && 
                   <Grid columns={3}>
@@ -45,4 +50,5 @@ const Home = () => {
         </>
       );
     }
-export default Home;
+
+export default observer(Home);

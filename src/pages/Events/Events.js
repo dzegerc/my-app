@@ -5,16 +5,31 @@ import Loader from '../../components/Loader/Loader';
 import { Section } from './EventsStyle'; 
 import  { Grid } from '../../lib/style/generalStyles';
 import EventsInfo from '../../components/EventsInfo/EventsInfo';
+import eventsStore from '../../components/store/EventStore';
+import { ButtonAdd } from '../../lib/style/generalStyles';
+import { observer } from 'mobx-react-lite';
 
 const Events = () => {
     const [events, setEvents] = useState(null);
+    const [filteredEvents, setFilteredEvents] = useState(null);
     
   
     useEffect(() => {
-        setTimeout(() => {
-            setEvents(eventsMock);
-        }, 1000);
-    }, [events]);
+        let mounted = true;
+
+        if (eventsStore.eventLenght === 0) {
+            setTimeout(() => {
+                if (mounted) {
+                    eventsStore.setEvents(eventsMock);
+                    setEvents(eventsStore.getEvents);
+                    setFilteredEvents(eventsStore.getEvents);
+                }
+            }, 1000);
+        } else {
+            setEvents(eventsStore.getEvents);
+            setFilteredEvents(eventsStore.getEvents);
+        }
+    });
   
 
     return (
@@ -22,6 +37,9 @@ const Events = () => {
               <Section title="Events">
                   <Loader />
                   {events &&
+                  <GridHeader>
+                      <ButtonAdd>Add events</ButtonAdd>
+                  </GridHeader>
                     <Grid columns={4}>
                         {events.map(event => {
                             return (
@@ -45,4 +63,5 @@ const Events = () => {
     </>
     );
 }
-export default Events;
+
+export default observer(Events);

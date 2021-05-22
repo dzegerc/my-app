@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import {
     colors,
@@ -6,7 +6,13 @@ import {
     transitionEase
 } from '../../lib/style/theme';
 
-export const Grid = styled.div `
+export const GridHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+`;
+
+export const Grid = styled.div`
     display: grid;
     row-gap: 32px;
     @media screen and (${breakpoints.mobileLarge}) {
@@ -15,17 +21,17 @@ export const Grid = styled.div `
     }
     @media screen and (${breakpoints.desktop}) {
         grid-template-columns: repeat(3, 1fr);
-        ${props => props.columns === 3 && 
-            'padding: 0 32px'
-        }
+        ${props => props.columns === 3 &&
+        'padding: 0 32px'
+    }
     }
     @media screen and (${breakpoints.desktopLarge}) {
-        ${props => props.columns === 4 && 
-            'padding: 0 84px;'
-        }
+        ${props => props.columns === 4 &&
+        'padding: 0 84px;'
+    }
     }
 `;
-export const ButtonStyle = css `
+export const ButtonStyle = css`
 display: block;
 text-decoration: none;
 width: 100%;
@@ -50,15 +56,18 @@ font-family: "Montserrat", sans-serif;
 }
 `;
 
-export const Button = styled(NavLink) `
+export const Button = styled(NavLink)`
     ${ButtonStyle}
 `;
 
-export const ButtonSubmit = styled.button `
+export const ButtonSubmit = styled.button`
     ${ButtonStyle}
 `;
 
-export const FormStyle = css ` 
+export const Counter = styled.button`
+`;
+
+export const FormStyle = css` 
     border: 1px solid ${colors.lightGrey};
     border-radius: 6px;
     width: 100%;
@@ -74,7 +83,7 @@ export const FormStyle = css `
     }
 `;
 
-export const Title = styled.h1 `
+export const Title = styled.h1`
     text-align: center;
     margin-top: 30px;
     font-size: 30px;
@@ -103,19 +112,19 @@ export const Form = styled.form`
     }
 `;
 
-export const FormRow = styled.div `
+export const FormRow = styled.div`
     margin-bottom: 32px;
     &:last-child {
         margin-bottom: 0;
     }
 `;
 
-export const CheckboxWrapper = styled.div `
+export const CheckboxWrapper = styled.div`
     display: flex;
     align-items: center;
 `;
 
-export const InputLabel = styled.label `
+export const InputLabel = styled.label`
     display: block;
     text-align: left;
     font-weight: bold;
@@ -129,43 +138,43 @@ export const InputLabel = styled.label `
     }
 `;
 
-export const InputText = styled.input `
+export const InputText = styled.input`
     ${FormStyle};
     line-height: 40px;
     padding: 0 10px;
 `;
 
-export const TextArea = styled.textarea `
+export const TextArea = styled.textarea`
     ${FormStyle};
     line-height: 150%;
     padding: 10px;
     min-width: 100%;
 `;
 
-export const InputCheckbox = styled.input `
+export const InputCheckbox = styled.input`
     margin-right: 12px;
     
     width: 18px;
     height: 18px;
 `;
 
-export const InputError = styled.div `
+export const InputError = styled.div`
     text-align: left;
     font-size: 14px;
     color: ${colors.red};
     padding-top: 8px;
 `;
 
-export const FormColumns = styled.div `
+export const FormColumns = styled.div`
     ${FormStyle};
     column-count: 2;
     column-gap: 40px;
 `;
-export const Select = styled.select `
+export const Select = styled.select`
     ${FormStyle};
     min-width: 300px;
 `;
-export const Option = styled.option ` 
+export const Option = styled.option` 
     ${FormStyle};
 `;
 export const SuccessMessage = styled.p`
