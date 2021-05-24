@@ -25,6 +25,8 @@ export const ButtonStyle = css `
 export const ButtonAdd = styled.button`
     ${ButtonStyle}
 `;
+ 
+
 export const EventEmpty = styled.p `
 text-align: center;
 `
@@ -33,7 +35,7 @@ export const Wrapper = styled.div `
     font-weight: 550;
     text-align: left;
     margin-top: 30px;
-    line-height: 50px;
+    line-height: 60px;
     border-spacing: 0;
     border-radius:6px;
     overflow: hidden;
@@ -56,7 +58,7 @@ export const TableHead = styled.tr `
 `;
 export const TableBody = styled.tbody ` 
     margin-top: 30px;
-    margin-left: 20px;
+
     `;
 
 export const MdDelete = styled.button ` 

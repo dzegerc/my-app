@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Modal from '../Modal/Modal';
 import { useFormik  } from 'formik';
 import * as Yup from 'yup';
+import { Button } from '../../lib/style/generalStyles';
 import {
     Wrapper,
     TableHead,
@@ -222,6 +223,7 @@ return (
                             <FormRow>
                                 <InputLabel htmlFor="company">Company</InputLabel>
                                 <Select
+
                                     id='company'
                                     {...formik.getFieldProps('company')}
                                 >
@@ -236,7 +238,7 @@ return (
                              </FormRow>
                             </FormColumns>
                              <FormRow>
-                                <ButtonSubmit type="add">Add event</ButtonSubmit>
+                                <Button type="submit" text="Add event"/>
                             </FormRow>
                         </Form>
                     </Modal>

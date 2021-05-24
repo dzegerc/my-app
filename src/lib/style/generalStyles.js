@@ -50,9 +50,10 @@ font-family: "Montserrat", sans-serif;
 }
 `;
 
-export const Button = styled(NavLink) `
-    ${ButtonStyle}
-`;
+export const Button = ({text, onClick}) => {
+    return <ButtonSubmit onClick={onClick}>{text}</ButtonSubmit>;
+}
+;
 
 export const ButtonSubmit = styled.button `
     ${ButtonStyle}
@@ -95,7 +96,7 @@ export const Title = styled.h1 `
 export const Form = styled.form`
     width: 100%;
     text-align: center;
-    margin-left: 450px;
+    margin-left: 80px;
     margin-top: 50px;
 
     @media screen and (${breakpoints.mobileLarge}) {
@@ -104,11 +105,30 @@ export const Form = styled.form`
 `;
 
 export const FormRow = styled.div `
+    align-items: center;
+    width: 100%;
     margin-bottom: 32px;
+
+    &:first-child {
+        width: 100%;
+    }
+    
+
     &:last-child {
         margin-bottom: 0;
+        margin-left:
     }
+
+    @media screen and (${breakpoints.mobileLarge}) {
+        font-size: 24px;
+    }
+    @media screen and (${breakpoints.desktop}) {
+        font-size: 28px;
+    }
+    @media screen and (${breakpoints.desktopLarge}) {
+        font-size: 32px;
 `;
+
 
 export const CheckboxWrapper = styled.div `
     display: flex;

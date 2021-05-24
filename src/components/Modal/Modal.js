@@ -6,7 +6,6 @@ import {
     Title,
    CloseButton
 } from './ModalStyle';
-import { VscChromeClose } from "react-icons/vsc";
 
 const Modal = (props) => {
 
@@ -16,7 +15,6 @@ const Modal = (props) => {
                 <Header>
                     <Title>Add Event</Title>
                     <CloseButton onClick={props.modalClose}>
-                        <VscChromeClose size={25}/>
                     </CloseButton>
                 </Header>
                 {props.children}

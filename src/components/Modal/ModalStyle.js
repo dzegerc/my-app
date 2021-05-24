@@ -1,22 +1,39 @@
 import styled from "styled-components";
 import { 
     colors,
-    breakpoints
+    breakpoints,
+    boxShadow,
+    transitionCubic
 } from "../../lib/style/theme";
 
 export const Wrapper = styled.div`
     position: absolute;
-    margin-left: 300px;
-    width: 700px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    overflow: auto
     background-color: ${colors.white};
       
 `;
 
 export const Inner = styled.div`
-    border: 4px solid black;
+    position: relative;
+    border: 1px solid black;
+    width: 600px;
+    height: 700px;
+    border-radius: 8px;
 	overflow: hidden;
 	display: inline-block;
     flex-direction: column;
+    background-color: ${colors.lightGrey};
+    box-shadow: ${boxShadow};
+    transition: ${transitionCubic};
+
    
 `;
 
